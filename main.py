@@ -1,11 +1,15 @@
 from stats import get_num_words, get_char_counts, get_sorted_char_counts
-
+import sys
 def get_book_text(filepath):
    with open(filepath, 'r') as f:
         return f.read()
 
 def main():
-    book_path = "./books/frankenstein.txt"
+    if len(sys.argv) != 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+
+    book_path = sys.argv[1]
     contents = get_book_text(book_path)
     word_count = get_num_words(contents)
     print(f"{word_count} words found in the document")
